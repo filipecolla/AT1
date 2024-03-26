@@ -14,6 +14,8 @@ import ListagemServicosProdutosMaisConsumidosFeminino from "../listagem/listagem
 import ListagemServicosProdutosMaisConsumidosMasculino from "../listagem/listagemMaisConsumidoMasculino";
 import listagemClientesMenosConsumiram from "../listagem/listagemClientesMenosConsumiram";
 import ListagemClientesMaisConsumiramValor from "../listagem/listagemMaisConsumiramEmValor";
+import CPF from "../modelo/cpf";
+import Telefone from "../modelo/telefone";
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -126,7 +128,7 @@ function iniciar() {
                                 const clienteEncontrado = clientes.find(cliente => cliente.getCpf.getValor === cpfAlterar);
                                 if (clienteEncontrado) {
                                     console.log(`\nQual informação você deseja alterar: `);
-                                    rl.question(`\n1 - Nome do Cliente\n2 - Nome Social do Cliente\n3 - Gênero do Cliente\n\nOpção: `, (clienteEncontrados) => {
+                                    rl.question(`\n1 - Nome do Cliente\n2 - Nome Social do Cliente\n3 - Gênero do Cliente\n4 - Adicionar Produto/Serviço\n5 - Excluir Produto/Serviço\n\nOpção: `, (clienteEncontrados) => {
                                         if (clienteEncontrados === '1') {
                                             console.log(`\nAlterando o Nome do cliente: ${clienteEncontrado.nome}`);
                                             rl.question(`\nQual o novo Nome: `, (novoNome) => {
@@ -143,6 +145,7 @@ function iniciar() {
                                             });
 
                                             console.log(`\nNome Social alterado com sucesso!`);
+                                            iniciar();
 
                                         } else if (clienteEncontrados === '3') {
                                             console.log(`Alterando o Gênero de ${clienteEncontrado.nome}, que é ${clienteEncontrado.getGenero}`);
@@ -152,6 +155,43 @@ function iniciar() {
 
                                             console.log(`\nGênero Alterado com sucesso!`);
                                             iniciar();
+
+                                        } else if (clienteEncontrados === '4') {
+                                            console.log(`\nAdicionando Produto/Serviço: `);
+                                            rl.question(`\nQual serviço você deseja adicionar:\n1 - Produto\n2 - Serviço\n\nOpção: `, (opcaoAdicionar) => {
+                                                if(opcaoAdicionar === '1') {
+                                                    rl.question(`\nQual o ID do produto que deseja adicionar: `, (idProdutoAdicionar) => {
+                                                        const idProdutoEncontrado = produtos.find(produto => produto.getId === idProdutoAdicionar);
+                                                        if (idProdutoEncontrado) {
+                                                            console.log(`\nAdicionando ${idProdutoEncontrado.nome} em ${clienteEncontrado.nome}`);
+                                                            clienteEncontrado.adicionarProdutoConsumido(idProdutoEncontrado);
+                                                            console.log(`\nProduto ${idProdutoEncontrado.nome} adicionado no Cliente ${clienteEncontrado.nome}!`);
+                                                            iniciar();
+
+                                                        } else {
+                                                            console.log(`\nID não encontrado!`);
+                                                            iniciar();
+                                                        };
+                                                    });
+                                                } else if (opcaoAdicionar === '2') {
+                                                    rl.question(`\nQual o ID do serviço que deseja adicionar: `, (idServicoAdicionar) => {
+                                                        const idServicoEncontrado = servicos.find(servico => servico.getId === idServicoAdicionar);
+                                                        if (idServicoEncontrado) {
+                                                            console.log(`\nAdicionando ${idServicoEncontrado.nome} em ${clienteEncontrado.nome}`);
+                                                            clienteEncontrado.adicionarServicoConsumido(idServicoEncontrado);
+                                                            console.log(`\nServiço ${idServicoEncontrado.nome} adicionado no Cliente ${clienteEncontrado.nome}!`);
+                                                            iniciar();
+                                                        } else {
+                                                            console.log(`\nID de serviço não encontrado!`);
+                                                            iniciar();
+                                                        };
+                                                    })
+                                                } else {
+                                                    console.log(`\nError!`);
+                                                    console.log(`\nOpção inválida!`);
+                                                    iniciar();
+                                                };
+                                            });
                                         } else {
                                             console.log(`\nError!`);
                                             console.log(`Opção inválida!`);
@@ -247,5 +287,11 @@ function iniciar() {
     });
 };
 
+const data1 = new Date(2004, 10, 4);
+const cpf1 = new CPF('515.518.088.03', data1);
+const telefone1 = new Telefone('12', '997601410');
+const cliente1 = new Cliente(`Filipe Colla`, `Filipe`, cpf1, `masculino`, telefone1);
+
+clientes.push(cliente1)
         
 iniciar();

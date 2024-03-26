@@ -1,6 +1,5 @@
 import CPF from "./cpf"
 import Produto from "./produto"
-import RG from "./rg"
 import Servico from "./servico"
 import Telefone from "./telefone"
 
@@ -9,17 +8,15 @@ export default class Cliente {
     public nomeSocial: string
     public genero: string
     private cpf: CPF
-    private rgs: Array<RG>
     private dataCadastro: Date
     private telefones: Array<Telefone>
     private produtosConsumidos: Array<Produto>
     private servicosConsumidos: Array<Servico>
-    constructor(nome: string, nomeSocial: string, cpf: CPF, genero: string) {
+    constructor(nome: string, nomeSocial: string, cpf: CPF, genero: string, telefone: Telefone) {
         this.nome = nome
         this.nomeSocial = nomeSocial
         this.cpf = cpf
         this.genero = genero
-        this.rgs = []
         this.dataCadastro = new Date()
         this.telefones = []
         this.produtosConsumidos = []
@@ -32,10 +29,6 @@ export default class Cliente {
 
     public get getCpf(): CPF {
         return this.cpf;
-    };
-
-    public get getRgs(): Array<RG> {
-        return this.rgs;
     };
 
     public get getDataCadastro(): Date {
@@ -52,5 +45,13 @@ export default class Cliente {
 
     public get getServicosConsumidos(): Array<Servico> {
         return this.servicosConsumidos;
+    };
+
+    public adicionarProdutoConsumido(produto: Produto): void {
+        this.produtosConsumidos.push(produto);
+    };
+
+    public adicionarServicoConsumido(servico: Servico): void {
+        this.servicosConsumidos.push(servico);
     };
 };

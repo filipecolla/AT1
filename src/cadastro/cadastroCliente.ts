@@ -1,5 +1,6 @@
 import Cliente from "../modelo/cliente";
 import CPF from "../modelo/cpf";
+import Telefone from "../modelo/telefone";
 import Cadastro from "./cadastro";
 import * as readline from "readline";
 
@@ -23,16 +24,21 @@ export default class CadastroCliente extends Cadastro {
                 this.rl.question(`Por favor informe o número do CPF: `, (valorCPF) => {
                     this.rl.question(`Por favor informe a data de emissão do CPF, no padrão dd/mm/yyyy: `, (data) => {
                         this.rl.question(`Como você se identifica: (Informe no padrão M = Masculino e F = Feminino)`, (genero) => {
-                            let partesData = data.split('/');
-                            let ano = Number(partesData[2]);
-                            let mes = Number(partesData[1]);
-                            let dia = Number(partesData[0]);
-                            let dataEmissao = new Date(ano, mes - 1, dia);
-                            let cpf = new CPF(valorCPF, dataEmissao);
-                            let cliente = new Cliente(nome, nomeSocial, cpf, genero);
-                            this.clientes.push(cliente);
-                            console.log(`\nCadastro concluído!\n`);
-                            this.rl.close();
+                            this.rl.question(`Por favor informe seu DDD: `, (ddd) => {
+                                this.rl.question(`Por favor informe seu número: `, (numero) => {
+                                    let partesData = data.split('/');
+                                    let ano = Number(partesData[2]);
+                                    let mes = Number(partesData[1]);
+                                    let dia = Number(partesData[0]);
+                                    let telefone = new Telefone(ddd, numero);
+                                    let dataEmissao = new Date(ano, mes - 1, dia);
+                                    let cpf = new CPF(valorCPF, dataEmissao);
+                                    let cliente = new Cliente(nome, nomeSocial, cpf, genero, telefone);
+                                    this.clientes.push(cliente);
+                                    console.log(`\nCadastro concluído!\n`);
+                                    this.rl.close();
+                                });
+                            });
                         });
                     });
                 });
