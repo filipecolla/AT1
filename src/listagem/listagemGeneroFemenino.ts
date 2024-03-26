@@ -1,5 +1,5 @@
-import Listagem from "./listagem";
 import Cliente from "../modelo/cliente";
+import Listagem from "./listagem";
 
 export default class listagemGeneroFemenino extends Listagem {
     private clientes: Array<Cliente>;
@@ -10,14 +10,12 @@ export default class listagemGeneroFemenino extends Listagem {
     };
 
     public listar(): void {
-        console.log(`\nAqui está a listagem de todos os clientes do gênero Feminino: `);
-        const clientesMasculinos = this.clientes.filter(cliente => cliente.getGenero.toLowerCase() === 'masculino');
-        clientesMasculinos.forEach(cliente => {
+        console.log(`\nAqui está a listagem de todos os clientes do gênero Feminino: \n`)
+        const clientesFemeninos = this.clientes.filter(cliente => cliente.getGenero.toLowerCase() === 'feminino');
+        clientesFemeninos.forEach(cliente => {
             console.log(`Nome: ${cliente.nome}\n`);
-            console.log(`Genêro: ${cliente.getGenero}\n`);
-            console.log(`--------------------------------------`);
+            console.log(`Gênero: ${cliente.getGenero}\n`);
+            console.log(`--------------------------------------\n`);
         });
-
-        console.log(`\n`);
     };
 };

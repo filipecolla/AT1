@@ -10,7 +10,7 @@ export default class ListagemClientesMaisConsumiramValor extends Listagem {
     };
 
     public listar(): void {
-        console.log(`\nLista dos 5 clientes que mais consumiram em valor:`);
+        console.log(`\nLista dos 5 clientes que mais consumiram em valor: \n`);
 
         const clientesOrdenados = this.clientes.sort((a, b) => {
             const ValorTotalA = this.calcularValorTotalConsumido(a);
@@ -22,8 +22,6 @@ export default class ListagemClientesMaisConsumiramValor extends Listagem {
             const ValorTotal = this.calcularValorTotalConsumido(cliente);
             console.log(`${index + 1}. Nome: ${cliente.nome}, Valor Total Consumido: ${ValorTotal}`);
         });
-
-        console.log(`\n`);
     };
 
     private calcularValorTotalConsumido(cliente: Cliente): number {

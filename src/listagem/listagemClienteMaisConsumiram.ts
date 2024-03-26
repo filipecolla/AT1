@@ -10,7 +10,7 @@ export default class listagemClienteMaisConsumiram extends Listagem {
     };
 
     public listar(): void {
-        console.log(`\nLista dos 10 clientes que mais consumiram produtos ou serviços, em quantidade: `);
+        console.log(`\nLista dos 10 clientes que mais consumiram produtos ou serviços, em quantidade: \n`);
 
         const topConsumidores = this.clientes.sort((a, b) => {
             const totalA = a.getProdutosConsumidos.length + a.getServicosConsumidos.length;
@@ -22,7 +22,5 @@ export default class listagemClienteMaisConsumiram extends Listagem {
             const totalConsumido = cliente.getProdutosConsumidos.length + cliente.getServicosConsumidos.length;
             console.log(`${index + 1}. Nome: ${cliente.nome}, Total Consumido: ${totalConsumido}`);
         });
-
-        console.log(`\n`);
     };
 };

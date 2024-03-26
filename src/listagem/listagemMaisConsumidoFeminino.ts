@@ -10,7 +10,7 @@ export default class ListagemServicosProdutosMaisConsumidosFeminino extends List
     };
 
     public listar(): void {
-        console.log(`\nLista dos serviços ou produtos mais consumidos pelo gênero feminino`);
+        console.log(`\nLista dos serviços ou produtos mais consumidos pelo gênero feminino: \n`);
         const contador: { [key: string]: number } = {};
 
         this.clientes.forEach(cliente => {
@@ -27,7 +27,5 @@ export default class ListagemServicosProdutosMaisConsumidosFeminino extends List
         itensMaisConsumidos.forEach((item, index) => {
             console.log(`${index + 1}. ${contador[item]} vezes`);
         });
-
-        console.log(`\n`);
     };
 };

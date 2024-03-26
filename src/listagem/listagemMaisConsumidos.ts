@@ -10,7 +10,7 @@ export default class ListagemProdutosServicosMaisConsumidos extends Listagem {
     };
 
     public listar(): void {
-        console.log(`\nLista dos produtos e serviços mais consumidos: `);
+        console.log(`\nLista dos produtos e serviços mais consumidos: \n`);
         const contador: { [key: string]: number } = {};
 
         this.clientes.forEach(cliente => {
@@ -28,7 +28,5 @@ export default class ListagemProdutosServicosMaisConsumidos extends Listagem {
         itensMaisConsumidos.forEach((item, index) => {
             console.log(`${index + 1}. ${item}: ${contador[item]} vezes`);
         });
-
-        console.log(`\n`);
     };
 };

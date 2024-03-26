@@ -9,7 +9,7 @@ export default class Cliente {
     public genero: string
     private cpf: CPF
     private dataCadastro: Date
-    private telefones: Array<Telefone>
+    private telefones: Telefone
     private produtosConsumidos: Array<Produto>
     private servicosConsumidos: Array<Servico>
     constructor(nome: string, nomeSocial: string, cpf: CPF, genero: string, telefone: Telefone) {
@@ -18,7 +18,7 @@ export default class Cliente {
         this.cpf = cpf
         this.genero = genero
         this.dataCadastro = new Date()
-        this.telefones = []
+        this.telefones = telefone
         this.produtosConsumidos = []
         this.servicosConsumidos = []
     };
@@ -35,7 +35,7 @@ export default class Cliente {
         return this.dataCadastro;
     };
 
-    public get getTelefones(): Array<Telefone> {
+    public get getTelefones(): Telefone {
         return this.telefones;
     };
 
