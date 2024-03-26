@@ -21,11 +21,13 @@ export default class ListagemServicosProdutosMaisConsumidosFeminino extends List
             cliente.getServicosConsumidos.forEach(servico => {
                 contador[servico.nome] = (contador[servico.nome] || 0) + 1;
             });
+
         });
 
         const itensMaisConsumidos = Object.keys(contador).sort((a, b) => contador[b] - contador[a]);
         itensMaisConsumidos.forEach((item, index) => {
-            console.log(`${index + 1}. ${contador[item]} vezes`);
+            console.log(`${index + 1}. ${item}: ${contador[item]} vezes`);
         });
+
     };
 };
