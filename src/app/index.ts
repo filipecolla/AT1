@@ -415,7 +415,7 @@ function iniciar() {
                                     console.log(`\nOk! Excluindo produto...`);
                                     const index = produtos.findIndex(produto => produto.getId === idProdutoExcluir);
                                     if (index !== -1) {
-                                        clientes.splice(index, 1)
+                                        produtos.splice(index, 1)
                                         console.log(`\nProduto ${idProduto.nome} excluido com sucesso!`);
                                         iniciar();
                                     } else {
